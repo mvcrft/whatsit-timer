@@ -110,11 +110,21 @@
       position: fixed;
       top: 52px; bottom: 80px;
       left: 0; right: 0;
-      background: #fff;
+      background: var(--bg-screen);
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
+    }
+
+    /* White band wraps only the timer digits, matching Figma */
+    #timer-white-band {
+      width: 100%;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 0;
     }
 
     /* ── Timer display ── */
@@ -255,7 +265,9 @@
 
   <!-- Zone 4: Timer band -->
   <main id="timer-band">
-    <div id="timer-display">3:00</div>
+    <div id="timer-white-band">
+      <div id="timer-display">3:00</div>
+    </div>
   </main>
 
   <!-- Zone 5: Controls bar -->
