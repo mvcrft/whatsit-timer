@@ -129,6 +129,19 @@
       padding: 48px 0;
     }
 
+    /* Fixed-width digit columns — each digit gets width: 1ch (= width of "0"),
+       keeping the timer anchored as digits change width each tick. */
+    .tc-dig {
+      display: inline-block;
+      width: 1ch;
+      text-align: center;
+    }
+    .tc-sep {
+      display: inline-block;
+      width: 0.35ch;
+      text-align: center;
+    }
+
     /* ── Timer display ── */
     #timer-display {
       max-width: 784px;
@@ -332,6 +345,13 @@
       return `${m}:${String(s).padStart(2, '0')}`;
     }
 
+    function formatTimeHTML(secs) {
+      return formatTime(secs).split('').map(ch =>
+        ch === ':' ? `<span class="tc-sep">:</span>`
+                   : `<span class="tc-dig">${ch}</span>`
+      ).join('');
+    }
+
     function playAudio(el) {
       if (isMuted) return;
       el.currentTime = 0;
@@ -379,7 +399,7 @@
       clearTickAudio();
 
       if (newState === 'round') {
-        timerDisplay.textContent = formatTime(timeLeft);
+        timerDisplay.innerHTML = formatTimeHTML(timeLeft);
         statusText.innerHTML = `Round <strong>${roundNum}</strong>`;
         btnPlay.disabled = false;
 
@@ -441,7 +461,7 @@
 
     function tick() {
       timeLeft--;
-      timerDisplay.textContent = formatTime(timeLeft);
+      timerDisplay.innerHTML = formatTimeHTML(timeLeft);
 
       if (timeLeft === CROSSFADE_START) {
         setCrossfade(3000);
