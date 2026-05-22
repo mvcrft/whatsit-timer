@@ -138,8 +138,11 @@
     }
     .tc-sep {
       display: inline-block;
-      width: 0.7ch;
+      width: 0.52ch;
       text-align: center;
+    }
+    .tc-ones {
+      width: 1.2ch;
     }
 
     /* ── Timer display ── */
@@ -346,9 +349,10 @@
     }
 
     function formatTimeHTML(secs) {
-      return formatTime(secs).split('').map(ch =>
+      const str = formatTime(secs);
+      return str.split('').map((ch, i) =>
         ch === ':' ? `<span class="tc-sep">:</span>`
-                   : `<span class="tc-dig">${ch}</span>`
+                   : `<span class="tc-dig${i === str.length - 1 ? ' tc-ones' : ''}">${ch}</span>`
       ).join('');
     }
 
