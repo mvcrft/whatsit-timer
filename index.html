@@ -85,6 +85,8 @@
       font-size: var(--branding-size);
       color: var(--shadow);
       letter-spacing: var(--brand-tracking);
+      /* letter-spacing adds trailing space after last char; compensate to truly center in circle */
+      margin-left: var(--brand-tracking);
     }
 
     /* ── Status label ── */
@@ -124,7 +126,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 28px 0;
+      padding: 48px 0;
     }
 
     /* ── Timer display ── */
@@ -143,17 +145,20 @@
     /* State: TIMEUP */
     #timer-display.state-timeup {
       color: var(--timeup-pink);
+      letter-spacing: 0;
     }
 
     /* State: SWITCH */
     #timer-display.state-switch {
       color: var(--itsit-green);
+      letter-spacing: 0;
     }
 
     /* State: GO */
     #timer-display.state-go {
       color: var(--itsit-blue);
       opacity: 1;
+      letter-spacing: 0;
     }
 
     /* Crossfade animation (applied during ROUND :30–:00) */
